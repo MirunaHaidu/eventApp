@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("test_qualifier_eventServiceImpl")
 public class EventServiceImpl implements EventService {
@@ -29,9 +30,12 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<EventInfoDto> getAllEvents() {
-        List<EventInfoDto> eventInfoDto = new ArrayList<>();
-        eventRepository.findAll().forEach(event -> eventInfoDto.add(EventConvertor.entityToInfoDto(event)));
-        return eventInfoDto;
+//        List<EventInfoDto> eventInfoDto = new ArrayList<>();
+//        eventRepository.findAll().forEach(event -> eventInfoDto.add(EventConvertor.entityToInfoDto(event)));
+//        return eventInfoDto;
+        return this.eventRepository.findAll().stream()
+                .map(EventConvertor::entityToInfoDto)
+                .collect(Collectors.toList());
     }
 
     @Override

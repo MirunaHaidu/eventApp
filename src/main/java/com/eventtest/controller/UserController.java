@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 @Controller
 //@RequestMapping("/api/v1/user")
@@ -28,21 +28,10 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<UserInfoDto> registerUser(@RequestBody @Valid UserCreateDto userCreateDto){
-       return ResponseEntity.ok(userService.registerUser(userCreateDto));
-    }
-    @RequestMapping(value = "/index")
-    public String index(){
-        return "index";
-    }
-
-    @GetMapping("register")
-    public String showRegistrationForm(Model model){
-        UserCreateDto user = new UserCreateDto();
-        model.addAttribute("user", user);
-        return "register";
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity<UserInfoDto> registerUser(@RequestBody @Valid UserCreateDto userCreateDto){
+//       return ResponseEntity.ok(userService.registerUser(userCreateDto));
+//    }
 
     @GetMapping("index")
     public String home(){
@@ -54,28 +43,38 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("register")
+    public String showRegistrationForm(Model model){
+        UserCreateDto user = new UserCreateDto();
+        model.addAttribute("user", user);
+        return "register";
+    }
+
+
+
     @PostMapping("/register/save")
-    public String registration(@Valid @ModelAttribute("user") UserCreateDto userCreateDto,
+    public String registration(@Valid @ModelAttribute("user") UserInfoDto userInfoDto,
                                BindingResult result,
                                Model model){
-//        Optional<User> existing = userRepository.findByEmail(userCreateDto.getEmail());
-        User existing = userService.findByEmail(userCreateDto.getEmail());
+//        Optional<User> existing = userRepository.findByEmail(userInfoDto.getEmail());
+        User existing = userService.findByEmail(userInfoDto.getEmail());
         if (existing !=null) {
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
         if (result.hasErrors()) {
-            model.addAttribute("user", userCreateDto);
+            model.addAttribute("user", userInfoDto);
             return "register";
         }
-        userService.registerUser(userCreateDto);
+        userService.saveUser(userInfoDto);
         return "redirect:/register/success";
     }
-   // @GetMapping("/users")
-   // public String listRegisteredUsers(Model model){
-     //   List<UserDto> users = userService.findAllUsers();
-    //    model.addAttribute("users", users);
-    //    return "users";
-//    }
+
+    @GetMapping("/users")
+    public String listRegisteredUsers(Model model){
+        List<UserInfoDto> users = userService.findAllUsers();
+        model.addAttribute("users", users);
+        return "users";
+    }
 
 
 

@@ -28,5 +28,5 @@ public class UserCreateDto {
     @Length(min = 8, max = 30)
     private String password;
 
-//    private List<Role> roles;
+    private List<Role> roles;
 }

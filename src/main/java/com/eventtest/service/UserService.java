@@ -14,10 +14,13 @@ public interface UserService {
 
 
     UserInfoDto registerUser(UserCreateDto userCreateDto);
-    List<UserInfoDto> getAllUsers();
-//    void saveUser(User user);
+    void saveUser(UserInfoDto userInfoDto);
+
 
     User findByEmail(String email);
+
+    List<UserInfoDto> findAllUsers();
+
 
 }
 

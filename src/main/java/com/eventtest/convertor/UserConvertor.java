@@ -12,7 +12,7 @@ public class UserConvertor {
         user.setLastName(userCreateDto.getLastName());
         user.setEmail(userCreateDto.getEmail());
         user.setPassword(userCreateDto.getPassword());
-//        user.setRoles(userCreateDto.getRoles());
+        user.setRoles(userCreateDto.getRoles());
 
         return user;
 
@@ -25,7 +25,7 @@ public class UserConvertor {
         userInfoDto.setLastName(user.getLastName());
         userInfoDto.setEmail(user.getEmail());
         userInfoDto.setPassword(user.getPassword());
-//        userInfoDto.setRoles(user.getRoles());
+        userInfoDto.setRoles(user.getRoles());
 
         return userInfoDto;
     }

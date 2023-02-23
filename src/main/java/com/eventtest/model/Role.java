@@ -18,8 +18,8 @@ public class Role {
     private Integer id;
     @Column
     private String name;
-//    @ManyToMany(mappedBy = "roles")
-//    List<User> users;
+    @ManyToMany(mappedBy = "roles")
+    List<User> users;
 
 
 }

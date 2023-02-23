@@ -22,6 +22,6 @@ public class UserInfoDto {
 
     private String password;
 
-//    private List<Role> roles;
+    private List<Role> roles;
 
 }

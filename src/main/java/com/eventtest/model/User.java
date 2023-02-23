@@ -25,13 +25,14 @@ public class User {
     @Column
     private String email;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String password;
-//    @ManyToMany
-//    @JoinTable(name="user_role",
-//            joinColumns = {@JoinColumn(name = "id_user")},
-//    inverseJoinColumns = {@JoinColumn(name = "id_role")})
-//    private List<Role> roles;
+    @ManyToMany
+    @JoinTable(
+            name="user_role",
+            joinColumns = {@JoinColumn(name = "id_user")},
+            inverseJoinColumns = {@JoinColumn(name = "id_role")})
+    private List<Role> roles;
 
 
 }
