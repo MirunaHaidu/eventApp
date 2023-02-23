@@ -2,11 +2,13 @@ package com.eventtest.controller;
 
 
 import com.eventtest.dto.UserCreateDto;
+import com.eventtest.dto.UserInfoDto;
 import com.eventtest.model.User;
 import com.eventtest.repository.UserRepository;
 import com.eventtest.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,10 +28,10 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-//    @PostMapping("/register")
-//    public ResponseEntity<UserInfoDto> registerUser(@RequestBody @Valid UserCreateDto userCreateDto){
-//       return ResponseEntity.ok(userService.registerUser(userCreateDto));
-//    }
+    @PostMapping("/register")
+    public ResponseEntity<UserInfoDto> registerUser(@RequestBody @Valid UserCreateDto userCreateDto){
+       return ResponseEntity.ok(userService.registerUser(userCreateDto));
+    }
     @RequestMapping(value = "/index")
     public String index(){
         return "index";

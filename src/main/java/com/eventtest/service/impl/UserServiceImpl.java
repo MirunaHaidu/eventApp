@@ -52,14 +52,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email)
     {
-        Optional<User> user = userRepository.findByEmail(email);
-        if(user.isPresent())
-        {
-            return user.get();
-        }
-        else {
-            throw new RuntimeException("User not find Exception");
-        }
+//        Optional<User> user = userRepository.findByEmail(email);
+//        if(user.isPresent())
+//        {
+//            return user.get();
+//        }
+//        else {
+//            throw new RuntimeException("User not find Exception");
+//        }
+        return userRepository.findByEmail(email);
 
     }
 
