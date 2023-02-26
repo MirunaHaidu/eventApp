@@ -25,7 +25,7 @@ public class EventConvertor {
     public static EventDto convertEntityToDto(Event event){
         EventDto eventDto = new EventDto();
         eventDto.setTitle(event.getTitle());
-        eventDto.setDate(event.getDate().toString());
+        eventDto.setDate(event.getDate());
         eventDto.setDescription(event.getDescription());
         eventDto.setCreatedBy(event.getCreatedBy());
         return eventDto;

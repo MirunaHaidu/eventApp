@@ -23,7 +23,7 @@ public class EventDto {
     private String title;
     @NotNull
 //    @JsonFormat(pattern = "yyyy-MM-dd")
-    private String date;
+    private Date date;
     @NotBlank
     @Length(min = 20, message = "Please insert minimum 20 characters")
     private String description;

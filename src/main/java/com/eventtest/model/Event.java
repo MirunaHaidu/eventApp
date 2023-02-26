@@ -9,6 +9,8 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,7 +25,7 @@ public class Event {
     @Column
     private String title;
     @Column
-    private LocalDate date;
+    private Date date;
     @Column
     private String description;
     @OneToOne(mappedBy = "event")

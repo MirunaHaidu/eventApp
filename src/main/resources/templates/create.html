@@ -56,7 +56,7 @@
                                name="date"
                                placeholder="Enter event date"
                                th:field="*{date}"
-                               type="text"
+                               type="date"
                         />
                         <p th:errors="*{date}" class="text-danger"
                            th:if="${#fields.hasErrors('description')}">
@@ -66,6 +66,19 @@
 <!--                        <label for="createdBy">Created by:</label>-->
 <!--                        <input type="text" th:field="${event.getCreatedBy().getEmail()}" id="createdBy"/>-->
 <!--                    </div>-->
+                    <div class="form-group mb-3">
+                        <label class="form-label">Event created by</label>
+                        <input class="form-control"
+                               id="createdBy"
+                               name="createdBy"
+                               placeholder="Enter event creator"
+                               th:field="*{createdBy}"
+                               type="text"
+                        />
+                        <p th:errors="*{date}" class="text-danger"
+                           th:if="${#fields.hasErrors('description')}">
+                        </p>
+                    </div>
 
                     <div class="form-group mb-3">
                         <label class="form-label">Event description</label>

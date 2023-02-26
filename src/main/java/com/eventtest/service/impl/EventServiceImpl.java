@@ -33,7 +33,7 @@ public class EventServiceImpl implements EventService {
     public void createEvent(EventDto eventDto){
         Event event = new Event();
         event.setTitle(eventDto.getTitle());
-        event.setDate(LocalDate.parse(eventDto.getDate()));
+        event.setDate(eventDto.getDate());
         event.setDescription(eventDto.getDescription());
         event.setCreatedBy(eventDto.getCreatedBy());
         eventRepository.save(event);
