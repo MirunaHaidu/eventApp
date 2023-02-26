@@ -41,4 +41,15 @@ public class User
     @JoinColumn(name="user_event")
     private Event event;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", event=" + event +
+                '}';
+    }
 }

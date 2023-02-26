@@ -32,7 +32,7 @@ public class EventController {
     @PostMapping("/create/save")
     public String createEvent(@Valid @ModelAttribute("event") EventDto eventDto,
                               BindingResult result, Model model) {
-        Event existing = eventService.findByTitle(eventDto.getTitle());
+//        Event existing = eventService.findByTitle(eventDto.getTitle());
 //       if(existing != null){
 //           result.rejectValue("title", null, "There is already an event with that name");
 //       }
@@ -46,8 +46,11 @@ public class EventController {
 
     @GetMapping("/events")
     public String listCreatedEvents(Model model){
+
         List<EventDto> events = eventService.getAllEvents();
+        System.out.print("Print events "+events);
         model.addAttribute("events", events);
+        System.out.print("Ajune aici");
         return "events";
     }
 //
