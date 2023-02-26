@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
+@Entity(name = "events")
 public class Event {
 
 
@@ -28,8 +28,9 @@ public class Event {
     private LocalDate date;
     @Column
     private String description;
-    @Column
-    private String createdBy;
+    @OneToOne(mappedBy = "event")
+    private User createdBy;
+
 
 
 }

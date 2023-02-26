@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Registration and Login System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" th:fragment="header">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Registration and Login System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row col-md-8 offset-md-2">
+        <div class="card">
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You've successfully created an event!</div>
+            </div>
+            <div class="card-header">
+                <h2 class="text-center">Create</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" role="form" th:action="@{/create/save}" th:object="${event}">
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Event title</label>
+                        <input class="form-control"
+                               id="title"
+                               name="title"
+                               placeholder="Enter event title"
+                               th:field="*{title}"
+                               type="text"
+                        />
+                        <p th:errors="*{title}" class="text-danger"
+                           th:if="${#fields.hasErrors('title')}">
+                        </p>
+                    </div>
+                    <div>
+                        <label for="event-date">Date of event:</label>
+                        <input type="date" th:field="${event.getDate()}" id="event-date"/>
+                    </div>
+                    <div>
+                        <label for="createdBy">Created by:</label>
+                        <input type="text" th:field="${event.getCreatedBy()}" id="createdBy"/>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Event description</label>
+                        <input class="form-control"
+                               id="description"
+                               name="description"
+                               placeholder="Enter event description"
+                               th:field="*{description}"
+                               type="text"
+                        />
+                        <p th:errors="*{description}" class="text-danger"
+                           th:if="${#fields.hasErrors('description')}">
+                        </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <button class="btn btn-primary" type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

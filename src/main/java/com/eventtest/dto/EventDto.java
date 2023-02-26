@@ -1,7 +1,6 @@
 package com.eventtest.dto;
 
 import com.eventtest.model.User;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -15,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class EventCreateDto {
+public class EventDto {
     @NotBlank
     private String title;
     @NotNull

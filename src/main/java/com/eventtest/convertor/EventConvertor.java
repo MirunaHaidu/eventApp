@@ -1,28 +1,35 @@
 package com.eventtest.convertor;
 
-import com.eventtest.dto.EventCreateDto;
-import com.eventtest.dto.EventInfoDto;
+import com.eventtest.dto.EventDto;
 import com.eventtest.model.Event;
+import com.eventtest.repository.UserRepository;
 
 public class EventConvertor {
+    private final UserRepository userRepository;
 
-    public static Event createDtoToEntity(EventCreateDto eventCreateDto){
-        Event event = new Event();
-        event.setTitle(eventCreateDto.getTitle());
-        event.setDate(eventCreateDto.getDate());
-        event.setDescription(eventCreateDto.getDescription());
-//        event.setCreatedBy(eventCreateDto.getCreatedBy());
-        return event;
+    public EventConvertor(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+//    public Event createDtoToEntity(EventDto eventDto){
+//        Event event = new Event();
+//        event.setTitle(eventDto.getTitle());
+//        event.setDate(eventDto.getDate());
+//        event.setDescription(eventDto.getDescription());
+//        event.setCreatedBy(userRepository.findByEmail(eventDto.getCreatedBy()));
+//        return event;
+//    }
+
+    public static EventDto convertEntityToDto(Event event){
+        EventDto eventDto = new EventDto();
+        eventDto.setTitle(event.getTitle());
+        eventDto.setDate(event.getDate());
+        eventDto.setDescription(event.getDescription());
+        eventDto.setCreatedBy(event.getCreatedBy());
+        return eventDto;
     }
 
 
-    public static EventInfoDto entityToInfoDto(Event event){
-        EventInfoDto eventInfoDto = new EventInfoDto();
-        eventInfoDto.setTitle(event.getTitle());
-        eventInfoDto.setDate(event.getDate());
-        eventInfoDto.setDescription(event.getDescription());
-//        eventInfoDto.setCreatedBy(event.getCreatedBy());
-        return eventInfoDto;
-    }
+
 
 }

@@ -15,23 +15,18 @@ import java.util.Optional;
 public class CustomUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
-
-    @Autowired
-
     public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email);
 
-       User user = userRepository.findByEmail(email);
-//       if(user.isPresent()){
-//           return new CustomUserDetails(user.get());
-//        }else {
-//           throw new UsernameNotFoundException("User not found");
-//        }
-
-        return new CustomUserDetails(user);
+        if (user != null) {
+            return new CustomUserDetails(user);
+        }else{
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
     }
 }
