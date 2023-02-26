@@ -48,9 +48,7 @@ public class EventController {
     public String listCreatedEvents(Model model){
 
         List<EventDto> events = eventService.getAllEvents();
-        System.out.print("Print events "+events);
         model.addAttribute("events", events);
-        System.out.print("Ajune aici");
         return "events";
     }
 //

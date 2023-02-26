@@ -1,5 +1,6 @@
 package com.eventtest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -28,9 +29,9 @@ public class Event {
     private Date date;
     @Column
     private String description;
-    @OneToOne(mappedBy = "event")
+    @OneToOne
+    @JoinColumn(name="event_user")
     private User createdBy;
-
 
 
 }

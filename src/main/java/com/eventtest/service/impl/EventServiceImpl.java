@@ -50,6 +50,7 @@ public class EventServiceImpl implements EventService {
         return this.eventRepository.findAll().stream()
                 .map(EventConvertor::convertEntityToDto)
                 .collect(Collectors.toList());
+//        return this.eventRepository.findAll();
     }
 
     @Override
