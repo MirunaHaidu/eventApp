@@ -39,10 +39,10 @@ public class SecurityConfig {
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers("/events").permitAll()
-                                .requestMatchers("/users").permitAll()
-                                .requestMatchers("/create").permitAll()
-//                                .requestMatchers("/create").hasRole("ADMIN")
-//                                .requestMatchers("/users").hasRole("ADMIN")
+                              //  .requestMatchers("/users").permitAll()
+                             //   .requestMatchers("/create").permitAll()
+                                .requestMatchers("/create").hasRole("ADMIN")
+                                .requestMatchers("/users").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")

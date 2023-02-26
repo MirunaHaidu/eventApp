@@ -4,6 +4,8 @@ import com.eventtest.dto.EventDto;
 import com.eventtest.model.Event;
 import com.eventtest.repository.UserRepository;
 
+import java.sql.Date;
+
 public class EventConvertor {
     private final UserRepository userRepository;
 
@@ -23,7 +25,7 @@ public class EventConvertor {
     public static EventDto convertEntityToDto(Event event){
         EventDto eventDto = new EventDto();
         eventDto.setTitle(event.getTitle());
-        eventDto.setDate(event.getDate());
+        eventDto.setDate(event.getDate().toString());
         eventDto.setDescription(event.getDescription());
         eventDto.setCreatedBy(event.getCreatedBy());
         return eventDto;

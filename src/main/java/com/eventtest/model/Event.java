@@ -19,12 +19,10 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer id;
     @Column
     private String title;
     @Column
-
     private LocalDate date;
     @Column
     private String description;

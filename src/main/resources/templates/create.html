@@ -45,14 +45,27 @@
                            th:if="${#fields.hasErrors('title')}">
                         </p>
                     </div>
-                    <div>
-                        <label for="event-date">Date of event:</label>
-                        <input type="date" th:field="${event.getDate()}" id="event-date"/>
+<!--                    <div>-->
+<!--                        <label for="event-date">Date of event:</label>-->
+<!--                        <input type="text" th:field="${event.getDate()}" id="event-date"/>-->
+<!--                    </div>-->
+                    <div class="form-group mb-3">
+                        <label class="form-label">Event date</label>
+                        <input class="form-control"
+                               id="date"
+                               name="date"
+                               placeholder="Enter event date"
+                               th:field="*{date}"
+                               type="text"
+                        />
+                        <p th:errors="*{date}" class="text-danger"
+                           th:if="${#fields.hasErrors('description')}">
+                        </p>
                     </div>
-                    <div>
-                        <label for="createdBy">Created by:</label>
-                        <input type="text" th:field="${event.getCreatedBy()}" id="createdBy"/>
-                    </div>
+<!--                    <div>-->
+<!--                        <label for="createdBy">Created by:</label>-->
+<!--                        <input type="text" th:field="${event.getCreatedBy().getEmail()}" id="createdBy"/>-->
+<!--                    </div>-->
 
                     <div class="form-group mb-3">
                         <label class="form-label">Event description</label>

@@ -8,6 +8,10 @@ import com.eventtest.model.Event;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,7 +33,7 @@ public class EventServiceImpl implements EventService {
     public void createEvent(EventDto eventDto){
         Event event = new Event();
         event.setTitle(eventDto.getTitle());
-        event.setDate(eventDto.getDate());
+        event.setDate(LocalDate.parse(eventDto.getDate()));
         event.setDescription(eventDto.getDescription());
         event.setCreatedBy(eventDto.getCreatedBy());
         eventRepository.save(event);
