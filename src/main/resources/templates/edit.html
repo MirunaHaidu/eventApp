@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EventApp</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar bg-dark" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">EventApp</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/users}">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/events}">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/create}">Create new event</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</nav>
+<br />
+<br />
+<br />
+<div class="container">
+  <div class="row col-md-8 offset-md-2">
+    <div th:if="${param.error}">
+      <div class="alert alert-danger">Invalid Email and Password.</div>
+    </div>
+    <div class="card">
+      <div th:if="${param.success}">
+        <div class="alert alert-info">You've successfully updated an event!</div>
+      </div>
+      <div class="card-header">
+        <h2 class="text-center">Update event</h2>
+      </div>
+      <div class="card-body">
+        <form action="#"
+              th:action="@{/update/{id}(id=${event.id})}"
+              th:object="${user}"
+              method="post">
+          <label for="name">Name</label>
+          <input type="text" th:field="*{name}" id="name" placeholder="Name">
+          <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+          <label for="email">Email</label>
+          <input type="text" th:field="*{email}" id="email" placeholder="Email">
+          <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+          <input type="submit" value="Update User">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
