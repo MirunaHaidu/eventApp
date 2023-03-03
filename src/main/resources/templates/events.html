@@ -3,54 +3,113 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 <head>
-  <meta charset="UTF-8">
-  <title>Registration and Login System</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EventApp</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Event list</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/create}">Create</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
-        </li>
-      </ul>
+<nav class="navbar bg-dark" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">EventApp</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane" viewBox="0 0 16 16">
+        <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Zm.894.448C7.111 2.02 7 2.569 7 3v4a.5.5 0 0 1-.276.447l-5.448 2.724a.5.5 0 0 0-.276.447v.792l5.418-.903a.5.5 0 0 1 .575.41l.5 3a.5.5 0 0 1-.14.437L6.708 15h2.586l-.647-.646a.5.5 0 0 1-.14-.436l.5-3a.5.5 0 0 1 .576-.411L15 11.41v-.792a.5.5 0 0 0-.276-.447L9.276 7.447A.5.5 0 0 1 9 7V3c0-.432-.11-.979-.322-1.401C8.458 1.159 8.213 1 8 1c-.213 0-.458.158-.678.599Z"/>
+      </svg>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/users}">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/events}">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/create}">Create new event</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </nav>
 </nav>
 <div class="container">
-  <div class="row">
-    <h1> Events </h1>
+  <div class="my-3">
+    <form th:action="@{/search}">
+      <div class="row d-flex">
+<!--        <div class="col-md-6 mt-2">-->
+<!--          <div class="search">-->
+<!--            <i class="fa fa-search"></i>-->
+<!--&lt;!&ndash;            <input id="title" type="search" name="title" th:value="${title}" required class="form-control"&ndash;&gt;-->
+<!--&lt;!&ndash;                   placeholder="Enter event title">&ndash;&gt;-->
+<!--            <br>-->
+<!--            <button type="submit" class="btn btn-secondary">Search</button>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="container-fluid">
+          <form class="d-flex" role="search">
+            <input id="title" type="search" name="title" th:value="${title}" required class="form-control"
+                   placeholder="Enter event title">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </form>
   </div>
-  <table class="table table-striped table-bordered table-hover">
+  <table class="table table-striped-columns table-bordered table-hover">
     <thead class="table-dark">
     <tr>
       <th>Title</th>
       <th>Date</th>
       <th>Description</th>
       <th>Created by</th>
+      <th>Update</th>
+      <th>Delete</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="event: ${events}">
       <td th:text="${event.title}"></td>
-      <td th:text="${event.date}"></td>
+      <td th:text="${#temporals.format(event.date, 'EEE, d MMM yyyy / HH:mm:ss')}"></td>
       <td th:text="${event.description}"></td>
       <td th:text="${event.createdBy}"></td>
+      <td>
+        <form th:action="@{/update/{title}(title=${event.title})}" method="post">
+          <button type="submit" class="btn btn-info" onClick="return confirm('Are you sure you want to update this event?')">Update</button>
+        </form>
+      </td>
+      <td>
+        <form th:action="@{/delete/{title}(title=${event.title})}" th:object="${event}" method="post">
+          <button type="submit" class="btn btn-danger" onClick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+        </form>
+      </td>
     </tr>
     </tbody>
   </table>
 </div>
+<div class="" th:unless="${events.size() > 0}">
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p>No events found!</p>
+    </blockquote>
+  </figure>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    // ...
+
+    $("#btnClear").on("click", function (e) {
+      e.preventDefault();
+      $("#keyword").text("");
+      window.location = "[[@{/events}]]";
+    });
+  });
+</script>
 </body>
 </html>

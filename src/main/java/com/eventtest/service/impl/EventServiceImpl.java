@@ -36,7 +36,6 @@ public class EventServiceImpl implements EventService {
         event.setDate(eventDto.getDate());
         event.setDescription(eventDto.getDescription());
         User user = userRepository.findByEmail(eventDto.getCreatedBy());
-        System.out.println("Show user: "+user);
         event.setCreatedBy(user);
         user.setEvent(event);
         eventRepository.save(event);
@@ -54,13 +53,32 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event findByTitle(String title) {
+    public EventDto findEventByTitle(String title) {
         Event event = eventRepository.findByTitle(title);
         if(event == null){
             throw new RuntimeException("Event with "+ title+" not found");
         }
-        return event;
+        return EventConvertor.convertEntityToDto(event);
+    }
 
+    @Override
+    public void deleteEvent(String title) {
+        Event event = eventRepository.findByTitle(title);
+        if(event == null){
+            throw new RuntimeException("Event with "+ title+" not found");
+        }
+        eventRepository.delete(event);
+
+    }
+
+    @Override
+    public Event updateEvent(Event savedEvent, String title) {
+        Event event = eventRepository.findByTitle(savedEvent.getTitle());
+        event.setTitle(savedEvent.getTitle());
+        event.setDate(savedEvent.getDate());
+        event.setDescription(savedEvent.getDescription());
+        event.setCreatedBy(savedEvent.getCreatedBy());
+        return eventRepository.save(event);
     }
 
 
