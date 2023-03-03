@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -26,7 +27,7 @@ public class Event {
     @Column
     private String title;
     @Column
-    private Date date;
+    private LocalDateTime date;
     @Column
     private String description;
     @OneToOne
