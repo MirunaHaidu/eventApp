@@ -37,16 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/index/**").permitAll()
-//                                .requestMatchers("/login/**").permitAll()
-//                                .requestMatchers("/events/**").permitAll()
-//                                .requestMatchers("/event/**").permitAll()
-//                                .requestMatchers("/details/**").permitAll()
-//                                .requestMatchers("/create/**").permitAll()
-//                                .requestMatchers("/delete/**").permitAll()
-//                                .requestMatchers("/search/**").permitAll()
-//                                .requestMatchers("/create").hasRole("ADMIN")
                                 .requestMatchers("/users/**").hasRole("ADMIN")
-//                                .requestMatchers("/index/**").hasRole("ADMIN")
                                 .requestMatchers("/login/**").hasRole("ADMIN")
                                 .requestMatchers("/events/**").hasRole("ADMIN")
                                 .requestMatchers("/event/**").hasRole("ADMIN")
@@ -56,6 +47,8 @@ public class SecurityConfig {
                                 .requestMatchers("/search/**").hasRole("ADMIN")
                                 .requestMatchers("/update/**").hasRole("ADMIN")
                                 .requestMatchers("/edit/**").hasRole("ADMIN")
+                                .requestMatchers("/save/**").hasRole("ADMIN")
+                                .requestMatchers("/update_event/**").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")

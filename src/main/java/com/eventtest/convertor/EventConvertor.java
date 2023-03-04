@@ -24,7 +24,7 @@ public class EventConvertor {
         eventDto.setCreatedBy(event.getCreatedBy().getEmail());
         return eventDto;
     }
-    public  Event convertEntityToDto(EventDto eventDto){
+    public Event convertDtoToEntity(EventDto eventDto){
         Event event = new Event();
         event.setTitle(eventDto.getTitle());
         event.setDate(eventDto.getDate());

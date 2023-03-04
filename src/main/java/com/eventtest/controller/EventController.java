@@ -1,5 +1,4 @@
 package com.eventtest.controller;
-
 import com.eventtest.dto.EventDto;
 import com.eventtest.model.Event;
 import com.eventtest.repository.EventRepository;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -69,21 +69,20 @@ public class EventController {
         return "redirect:/events?success";
     }
 
-    @PutMapping("/update/{title}")
-    public String updateEvent(@PathVariable("title") String title, Event event, Model model){
-
-        eventService.updateEvent(event, title);
-        model.addAttribute("event", event);
-        return "redirect:/edit";
+    @GetMapping("/update/{title}")
+    public String updateEvent(@PathVariable("title") String title, Model model, RedirectAttributes redirectAttributes) {
+        EventDto eventDto = eventService.findEventByTitle(title);
+        model.addAttribute("event", eventDto);
+        model.addAttribute("eventTitle", "Edit Event (Title: " + title + ")");
+        return "update_event";
     }
-//    @GetMapping("/edit/{title}")
-//    public String showUpdateForm(@PathVariable("id") long id, Model model) {
-//        User user = userRepository.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-//
-//        model.addAttribute("user", user);
-//        return "update-user";
-//    }
+
+    @PostMapping("/update/save")
+    public String saveTutorial(Event event, RedirectAttributes redirectAttributes) {
+        eventService.saveEvent(event);
+        redirectAttributes.addFlashAttribute("message", "The Tutorial has been saved successfully!");
+        return "redirect:/events?success";
+    }
 
 
 }

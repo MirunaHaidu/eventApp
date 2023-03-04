@@ -11,7 +11,6 @@ public interface EventService {
     List<EventDto> getAllEvents();
     EventDto findEventByTitle(String title);
     void deleteEvent(String title);
-
-    Event updateEvent(Event event, String title);
-
+//    String editEvent
+    void saveEvent(Event event);
 }
