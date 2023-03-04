@@ -8,6 +8,7 @@ import com.eventtest.repository.EventRepository;
 import com.eventtest.convertor.EventConvertor;
 import com.eventtest.model.Event;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,10 +26,6 @@ public class EventServiceImpl implements EventService {
         this.userRepository = userRepository;
     }
 
-//    @Override
-//    public EventInfoDto createEvent(EventDto eventDto) {
-//        return EventConvertor.entityToInfoDto(eventRepository.save(EventConvertor.createDtoToEntity(eventDto)));
-//    }
 
     public void createEvent(EventDto eventDto){
         Event event = new Event();
@@ -41,15 +38,13 @@ public class EventServiceImpl implements EventService {
         eventRepository.save(event);
     }
 
+
     @Override
     public List<EventDto> getAllEvents() {
-//        List<EventInfoDto> eventInfoDto = new ArrayList<>();
-//        eventRepository.findAll().forEach(event -> eventInfoDto.add(EventConvertor.entityToInfoDto(event)));
-//        return eventInfoDto;
         return this.eventRepository.findAll().stream()
                 .map(EventConvertor::convertEntityToDto)
                 .collect(Collectors.toList());
-//        return this.eventRepository.findAll();
+
     }
 
     @Override
@@ -72,13 +67,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event updateEvent(Event savedEvent, String title) {
-        Event event = eventRepository.findByTitle(savedEvent.getTitle());
-        event.setTitle(savedEvent.getTitle());
-        event.setDate(savedEvent.getDate());
-        event.setDescription(savedEvent.getDescription());
-        event.setCreatedBy(savedEvent.getCreatedBy());
-        return eventRepository.save(event);
+    public void saveEvent(Event event) {
+        eventRepository.save(event);
     }
 
 
