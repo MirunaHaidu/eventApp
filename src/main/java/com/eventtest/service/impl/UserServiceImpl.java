@@ -66,4 +66,5 @@ public class UserServiceImpl implements UserService {
         role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
     }
+
 }

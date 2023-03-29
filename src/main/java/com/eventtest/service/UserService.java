@@ -2,6 +2,7 @@ package com.eventtest.service;
 
 import com.eventtest.dto.UserDto;
 
+import com.eventtest.model.Role;
 import com.eventtest.model.User;
 
 
@@ -15,5 +16,6 @@ public interface UserService {
     User findByEmail(String email);
 
     List<UserDto> findAllUsers();
+
 }
 

@@ -66,9 +66,19 @@ public class EventServiceImpl implements EventService {
 
     }
 
+//    @Override
+//    public void saveEvent(Event event) {
+//        eventRepository.save(event);
+//    }
     @Override
-    public void saveEvent(Event event) {
-        eventRepository.save(event);
+    public void saveEvent(EventDto eventDto){
+        Event existingEvent = eventRepository.findByTitle(eventDto.getTitle());
+        existingEvent.setTitle(eventDto.getTitle());
+        existingEvent.setDescription(eventDto.getDescription());
+        existingEvent.setDate(eventDto.getDate());
+        User user = userRepository.findByEmail(eventDto.getCreatedBy());
+        existingEvent.setCreatedBy(user);
+        eventRepository.save(existingEvent);
     }
 
 
