@@ -12,5 +12,5 @@ public interface EventService {
     EventDto findEventByTitle(String title);
     void deleteEvent(String title);
 //    String editEvent
-    void saveEvent(Event event);
+    void saveEvent(EventDto eventDto);
 }

@@ -78,9 +78,9 @@ public class EventController {
     }
 
     @PostMapping("/update/save")
-    public String saveTutorial(Event event, RedirectAttributes redirectAttributes) {
-        eventService.saveEvent(event);
-        redirectAttributes.addFlashAttribute("message", "The Tutorial has been saved successfully!");
+    public String saveUpdatedEvent(EventDto eventDto, RedirectAttributes redirectAttributes) {
+        eventService.saveEvent(eventDto);
+        redirectAttributes.addFlashAttribute("message", "The event has been saved successfully!");
         return "redirect:/events?success";
     }
 

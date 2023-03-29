@@ -2,6 +2,7 @@ package com.eventtest.controller;
 
 
 import com.eventtest.dto.UserDto;
+import com.eventtest.model.Role;
 import com.eventtest.model.User;
 import com.eventtest.service.UserService;
 import jakarta.validation.Valid;
