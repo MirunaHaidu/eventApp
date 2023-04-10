@@ -11,7 +11,9 @@ import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,7 +30,7 @@ public class Event {
     private String title;
     @Column
     private LocalDateTime date;
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String description;
     @OneToOne
     @JoinColumn(name="event_user")
