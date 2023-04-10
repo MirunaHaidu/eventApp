@@ -18,7 +18,6 @@ public class EventController {
     private final EventService eventService;
     private final EventRepository eventRepository;
 
-    @Autowired
     public EventController(EventService eventService, EventRepository eventRepository) {
         this.eventService = eventService;
         this.eventRepository = eventRepository;
