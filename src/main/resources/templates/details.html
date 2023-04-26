@@ -85,6 +85,16 @@
             display: inline-block;
         }
 
+        body {
+            background-color: silver;
+            background-image: radial-gradient(circle at 100% 150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
+            radial-gradient(circle at 0 150%, silver 24%, white 24%, white 28%, silver 28%, silver 36%, white 36%, white 40%, transparent 40%, transparent),
+            radial-gradient(circle at 50% 100%, white 10%, silver 10%, silver 23%, white 23%, white 30%, silver 30%, silver 43%, white 43%, white 50%, silver 50%, silver 63%, white 63%, white 71%, transparent 71%, transparent),
+            radial-gradient(circle at 100% 50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent),
+            radial-gradient(circle at 0 50%, white 5%, silver 5%, silver 15%, white 15%, white 20%, silver 20%, silver 29%, white 29%, white 34%, silver 34%, silver 44%, white 44%, white 49%, transparent 49%, transparent);
+            background-size: 100px 50px;
+        }
+
     </style>
 
 
@@ -125,17 +135,22 @@
     <div class="row">
         <div class="text-center">
             <a th:object="${event}">
-                <h1 class="display-1" th:text="${event.title}"></h1>
+                <br>
+
+                <h1 class="display-1" style="background-color: #026873" th:text="${event.title}"></h1>
+
                 <br>
                 <br>
                 <br>
                 <br>
-                <div class="container">
+                <div class="d-inline-flex p-2">
                     <div class="row" data-masonry='{"percentPosition": true }'>
                         <div class="row col-md-8 offset-md-2">
-                            <div class="card text-center">
-                                <div class="card-body text-black">
-                                    <h4 class="card-title">When can you participate? </h4>
+                            <div class="card" style="width: 30rem;">
+                                <img src="https://media.istockphoto.com/id/1262025969/vector/calendar-with-selected-date-vector-illustration.jpg?s=612x612&w=0&k=20&c=cPBxy8JXs_rJsFwcYI408dLU-KoGOWEPHo-FDjsr98s="
+                                     class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Don't forget to save the date!</h5>
                                     <p class="card-text"
                                        th:text="${#temporals.format(event.date, 'EEE, d MMM yyyy')}"></p>
                                     <p class="card-text" th:text="${#temporals.format(event.date, 'HH:mm:ss')}"></p>
@@ -144,9 +159,10 @@
                         </div>
 
                         <div class="row col-md-8 offset-md-2">
-                            <div class="card text-center">
-                                <div class="card-body text-black">
-                                    <h4 class="card-title">This event was created by: </h4>
+                            <div class="card" style="width: 30rem;">
+                                <img src="https://fridayfiesta.in/wp-content/uploads/2022/02/Management-paradox-focused-v-open-impellus-leadership-and-management-training-1024x768.png"
+                                     class="card-img-top" alt="...">
+                                <div class="card-body">
                                     <p th:text="${event.createdBy}"></p>
                                 </div>
                             </div>
@@ -156,13 +172,10 @@
                     <br>
                     <br>
 
-                    <div class="container">
-                        <div class="row col-md-8 offset-md-2">
-                            <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                                What is the event about?
-                            </h3>
-
+                    <div class="row col-md-8 offset-md-2">
+                        <div class="card" style="height: 60%; width: 70%">
                             <article class="blog-post">
+                                <h5 class="card-title">What is the event about?</h5>
                                 <p class="lead" th:text="${event.description}"></p>
                             </article>
                         </div>
