@@ -8,6 +8,18 @@
   <title>EventApp</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
+  <style>
+    body{
+      background:
+              radial-gradient(circle farthest-side at 0% 50%,#fb1 23.5%,rgba(240,166,17,0) 0)21px 30px,
+              radial-gradient(circle farthest-side at 0% 50%,#B71 24%,rgba(240,166,17,0) 0)19px 30px,
+              linear-gradient(#fb1 14%,rgba(240,166,17,0) 0, rgba(240,166,17,0) 85%,#fb1 0)0 0,
+              linear-gradient(150deg,#fb1 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,#fb1 0)0 0,
+              linear-gradient(30deg,#fb1 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,#fb1 0)0 0,
+              linear-gradient(90deg,#B71 2%,#fb1 0,#fb1 98%,#B71 0%)0 0 #fb1;
+      background-size: 40px 60px;
+    }
+  </style>
 
 </head>
 <body>
@@ -48,7 +60,7 @@
           <form class="d-flex" role="search">
             <input id="title" type="search" name="title" th:value="${title}" required class="form-control"
                    placeholder="Enter event title">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-success" type="submit">Search</button>
           </form>
         </div>
       </div>
@@ -65,7 +77,7 @@
       <th>Delete</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody style="background-color: bisque">
     <tr th:each="event: ${events}">
       <td th:text="${event.title}"></td>
       <td th:text="${#temporals.format(event.date, 'EEE, d MMM yyyy / HH:mm:ss')}"></td>
